@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Find Latest Tag
+      - name: FindLatestTag
         uses: oprypin/find-latest-tag@v1.0.4
         with:
           repository: "FortAwesome/Font-Awesome"
@@ -17,5 +17,5 @@ jobs:
           
       - run: |
           bundle install
-          bundle exec fastlane update_font version:${{ steps.0.output.tag }}
+          bundle exec fastlane update_font version:${{ steps.FindLatestTag.output.tag }}
           bundle exec fastlane release version:${{ steps.0.output.tag }}
