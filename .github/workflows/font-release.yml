@@ -14,6 +14,15 @@ jobs:
         with:
           repository: "FortAwesome/Font-Awesome"
           releases-only: true
-          
-      - run: |
-          ls
+
+      - name: checkout
+        uses: actions/checkout@v2.3.4
+        with:
+          submodules: recursive
+          clean: true
+      
+      - name: run
+        run: |
+          bundle install
+          bundle exec fastlane update_font version:${{ steps.FindLatestTag.output.tag }}
+          bundle exec fastlane release version:${{ steps.FindLatestTag.output.tag }}
