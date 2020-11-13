@@ -16,6 +16,4 @@ jobs:
           releases-only: true
           
       - run: |
-          bundle install
-          bundle exec fastlane update_font version:${{ steps.FindLatestTag.output.tag }}
-          bundle exec fastlane release version:${{ steps.FindLatestTag.output.tag }}
+          pwd
