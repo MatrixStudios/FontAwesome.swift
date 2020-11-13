@@ -23,6 +23,14 @@ jobs:
       
       - name: run
         run: |
+          git submodule update --init
+          cd FortAwesome/FontAwesome
+          git fetch origin
+          git checkout ${{ steps.FindLatestTag.outputs.tag }}
+          cp -f ./otfs/*.otf ..
+          cd ../../
+          ./codegen.swift
+          git commit -am "Update font version to ${{ steps.FindLatestTag.outputs.tag }}"
+          
           bundle install
-          bundle exec fastlane update_font version:${{ steps.FindLatestTag.output.tag }}
-          bundle exec fastlane release version:${{ steps.FindLatestTag.output.tag }}
+          bundle exec fastlane release version:${{ steps.FindLatestTag.outputs.tag }}
