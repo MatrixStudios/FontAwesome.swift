@@ -27,7 +27,7 @@ jobs:
           cd FortAwesome/Font-Awesome
           git fetch origin
           git checkout ${{ steps.FindLatestTag.outputs.tag }}
-          cp -f ./otfs/*.otf ..
+          cp -f ./otfs/*.otf ../../FontAwesome
           cd ../../
           ./codegen.swift
           git commit -am "Update font version to ${{ steps.FindLatestTag.outputs.tag }}"
