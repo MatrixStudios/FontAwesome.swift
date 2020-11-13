@@ -16,4 +16,4 @@ jobs:
           releases-only: true
           
       - run: |
-          pwd
+          ls
