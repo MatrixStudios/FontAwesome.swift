@@ -1,0 +1,21 @@
+name: "Pull New Fonts"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 23 * * 0"
+jobs:
+  update_fonts:
+    runs-on: macos-latest
+
+    steps:
+      - name: Find Latest Tag
+        uses: oprypin/find-latest-tag@v1.0.4
+        with:
+          repository: "FortAwesome/Font-Awesome"
+          releases-only: true
+          
+      - run: |
+          bundle install
+          bundle exec fastlane update_font version:${{ steps.0.output.tag }}
+          bundle exec fastlane release version:${{ steps.0.output.tag }}
