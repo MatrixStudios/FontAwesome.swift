@@ -24,7 +24,7 @@ jobs:
       - name: run
         run: |
           git submodule update --init
-          cd FortAwesome/FontAwesome
+          cd FortAwesome/Font-Awesome
           git fetch origin
           git checkout ${{ steps.FindLatestTag.outputs.tag }}
           cp -f ./otfs/*.otf ..
